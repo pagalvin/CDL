@@ -9,6 +9,8 @@ IT uploads these documents into a document library, tags them as normal and then
 
 Why not use standard SharePoint you ask?  You may well want to do that, but this is a nicer, cleaner and more user friendly look.
 
+![As of 10/15/2014](http://goo.gl/QK8xFZ)
+
 Brief History:
 ==============
 10/15/2014: Initial repo created in github with MIT license
