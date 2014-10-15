@@ -1,0 +1,99 @@
+.dclCenteredText {
+    text-align: center;
+}
+
+.cdlHoverCat:hover {
+    background-color: #d5fdff;
+    cursor: pointer;
+}
+
+.cdlSelectedCategory
+{
+    background-color: #6ce6ff;
+}
+
+.pleasingOutline {
+    background-color: #dedef8;
+    box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444;
+}
+
+body {
+    color: #333;
+    font-size: 12px;
+    line-height: 20px;
+}
+.dclLabel {
+    padding-top: 8px;
+    text-align: right;
+    padding-right: 0px !important;
+    display:table-cell;
+    vertical-align:middle;
+}
+
+.cdlEvenRow {
+    background-color: #f2f8ff;
+}
+
+.cdlTableHeader {
+    font-weight: 900;
+    background-color: darkblue;
+    color: white;
+}
+.cdlCategoryHeader {
+    background-color: #1076ff;
+    color: #e0e9ff;
+    font-weight: 900;
+}
+.form-control {
+    padding: 0px;
+    height: 20px;
+    margin-top: 8px;
+    font-size: 12px;
+}
+
+a {
+    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+    font-size: 10px;
+}
+.form-group.required .control-label:before {
+    content:"*";
+    color:red;
+}
+
+legend.scheduler-border {
+    font-size: 0.9em !important;
+    font-weight: bold !important;
+    text-align: left !important;
+    width:inherit; /* Or auto */
+    padding:0 10px; /* To give a bit of padding on the left and right */
+    border-bottom:none;
+    margin-bottom: 0px;
+}
+
+fieldset.scheduler-border {
+    border: 1px groove #ddd !important;
+    xpadding: 0 1.4em 1.4em 1.4em !important;
+    margin: 0 0 5px 0 !important;
+    -webkit-box-shadow:  0px 0px 0px 0px #000;
+    box-shadow:  0px 0px 0px 0px #000;
+    padding-bottom: 5px;
+    padding-right: 20px;
+    paddding-top: 5px;
+    padding-left: 20px;
+}
+
+.col-xs-1, .col-sm-1, .col-md-1, .col-lg-1,
+.col-xs-2, .col-sm-2, .col-md-2, .col-lg-2,
+.col-xs-3, .col-sm-3, .col-md-3, .col-lg-3,
+.col-xs-4, .col-sm-4, .col-md-4, .col-lg-4,
+.col-xs-5, .col-sm-5, .col-md-5, .col-lg-5,
+.col-xs-6, .col-sm-6, .col-md-6, .col-lg-6,
+.col-xs-7, .col-sm-7, .col-md-7, .col-lg-7,
+.col-xs-8, .col-sm-8, .col-md-8, .col-lg-8,
+.col-xs-9, .col-sm-9, .col-md-9, .col-lg-9,
+.col-xs-10, .col-sm-10, .col-md-10, .col-lg-10,
+.col-xs-11, .col-sm-11, .col-md-11, .col-lg-11,
+.col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+    padding-left: 1px;
+    padding-right: 1px;
+}

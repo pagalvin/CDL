@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html ng-app="CDLApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Categorized Document Library Listing</title>
+    <link rel="stylesheet" href="../Libraries/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="../CSS/CDL.css">
+</head>
+<body>
+
+    <xform role="form">
+
+    <div class="container form-group required" ng-controller="CDLController">
+
+        <!-- Page/body label -->
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 dclCenteredText"><h2>Categorized Document Library Listing</h2></div>
+        </div>
+
+        <!-- Category display and search control area -->
+        <div class="row" >
+            <div class="col-xs-8 col-sm-8">
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border" id="dclCategoriesSection">
+                        Categories
+                        (<a href="" ng-click="selectAllCategories()">Select All<a>)
+                        (<a href="" ng-click="deselectAllCategories()">Deselect All<a>)
+                    </legend>
+
+                    <div class="row">
+                        <div class="col-xs-3 col-sm-3 cdlHoverCat"
+                             ng-repeat="aCategory in allCategories" ng-click="toggleCategoryIsSelected(aCategory)">
+                            {{aCategory}}
+                            <span ng-show="isCategorySelected(aCategory)" class="glyphicon glyphicon-ok"></span>
+                        </div>
+
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="col-xs-4 col-sm-4">
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border" id="dclSearchSection">
+                        Search
+                    </legend>
+
+                    <div class="row">
+                        <div class="col-sm-12 col-xs-12">
+                            search goes here
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12 col-xs-12">
+                            It's possible to figure out how many rows we need for categories and for search to show and then force a height this way.
+                        </div>
+                    </div>
+
+                </fieldset>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-12">
+                <fieldset class="scheduler-border">
+                    <legend class="scheduler-border" id="dclSearchResultsBody">
+                        Search Results
+                    </legend>
+
+                    <div class="row cdlTableHeader">
+                        <div class="col-xs-3 col-sm-3">Document</div>
+                        <div class="col-xs-8 col-sm-8">Title</div>
+                        <div class="col-xs-1 col-sm-1">Modified</div>
+                    </div>
+
+                    <div ng-repeat="aCat in allSelectedCategories">
+
+                            <div class="row">
+                                <div class="col-sm-12 col-xs-12 cdlCategoryHeader">Category: {{aCat}}</div>
+                            </div>
+                            <div class="row cdlHoverCat" ng-class="{cdlEvenRow: $even}" ng-repeat="aDocument in allSelectedDocuments | filter:{docCategory:aCat} ">
+                                <div class="col-sm-3 col-xs-3" >
+                                    [icon] {{aDocument.docName}}
+                                    <span class="glyphicon glyphicon-download"></span>
+                                 </div>
+                                <div class="col-sm-8 col-xs-8">Title goes here.</div>
+                                <div class="col-sm-1 col-xs-1">{{aDocument.docModifiedDate | date}}</div>
+                                <div class="col-sm-3 col-xs-3"></div>
+                                <div class="col-sm-8 col-xs-8">
+                                    {{aDocument.docSummary}}
+                                </div>
+                                <div class="col-sm-1 col-xs-1"></div>
+                            </div>
+                    </div>
+                </fieldset>
+            </div>
+
+        </div>
+
+    </div>
+
+</xform>
+
+
+    <script type="text/javascript" src="../Libraries/Angular/angular.js"></script>
+    <script type="text/javascript" src="../Libraries/Angular/angular-route.js"></script>
+    <script type="text/javascript" src="../Libraries/Lodash/lodash.js"></script>
+    <script type="text/javascript" src="../JS/CatDocLibController.js"></script>
+    <script type="text/javascript" src="../Libraries/jQuery/jquery.min.js"></script>
+    <script type="text/javascript" src="../Libraries/Bootstrap/bootstrap.min.js"></script>
+</body>
+</html>
