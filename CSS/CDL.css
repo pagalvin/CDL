@@ -1,3 +1,7 @@
+.cdlSearchlHighlight {
+    background-color: yellow;
+}
+
 .dclCenteredText {
     text-align: center;
 }
@@ -16,6 +20,7 @@
     background-color: #dedef8;
     box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444;
 }
+
 
 body {
     color: #333;

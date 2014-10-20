@@ -18,20 +18,20 @@
         </div>
 
         <!-- Category display and search control area -->
-        <div class="row" >
+        <div class="row">
             <div class="col-xs-8 col-sm-8">
                 <fieldset class="scheduler-border">
                     <legend class="scheduler-border" id="dclCategoriesSection">
                         Categories
-                        (<a href="" ng-click="selectAllCategories()">Select All<a>)
-                        (<a href="" ng-click="deselectAllCategories()">Deselect All<a>)
+                        (<a href="" ng-click="selectAllCategories()">Select All</a>)
+                        (<a href="" ng-click="deselectAllCategories()">Deselect All</a>)
                     </legend>
 
                     <div class="row">
                         <div class="col-xs-3 col-sm-3 cdlHoverCat"
-                             ng-repeat="aCategory in allCategories" ng-click="toggleCategoryIsSelected(aCategory)">
-                            {{aCategory}}
-                            <span ng-show="isCategorySelected(aCategory)" class="glyphicon glyphicon-ok"></span>
+                             ng-repeat="aCategory in allCategories" ng-click="toggleCategoryIsSelected(aCategory.catName)">
+                            {{aCategory.catName}} <span ng-show="true || aCategory.catCount > 0">({{aCategory.catCount}})</span>
+                            <span ng-show="isCategorySelected(aCategory.catName)" class="glyphicon glyphicon-ok"></span>
                         </div>
 
                     </div>
@@ -41,18 +41,22 @@
             <div class="col-xs-4 col-sm-4">
                 <fieldset class="scheduler-border">
                     <legend class="scheduler-border" id="dclSearchSection">
-                        Search
+                        Quick Search (<a href="#">What's this?</a>)
                     </legend>
 
                     <div class="row">
-                        <div class="col-sm-12 col-xs-12">
-                            search goes here
+                        <div class="col-sm-4 col-xs-4">
+                            Search for:
+                        </div>
+                        <div class="col-sm-8 col-xs-8">
+                            <input type="text" ng-model="searchText">
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-sm-12 col-xs-12">
-                            It's possible to figure out how many rows we need for categories and for search to show and then force a height this way.
+                            It's possible to figure out how many rows we need for categories and for search to show and
+                            then force a height this way.
                         </div>
                     </div>
 
@@ -60,18 +64,13 @@
 
             </div>
 
-
-        </div>
-
-
-        <div class="row">
             <div class="col-xs-12 col-sm-12">
                 <fieldset class="scheduler-border">
                     <legend class="scheduler-border" id="dclSearchResultsBody">
                         Search Results
                     </legend>
 
-                    <div class="row cdlTableHeader">
+                    <div class="row cdlTableHeader" ng-show="allSelectedCategories.length > 0;">
                         <div class="col-xs-3 col-sm-3">Document</div>
                         <div class="col-xs-8 col-sm-8">Title</div>
                         <div class="col-xs-1 col-sm-1">Modified</div>
@@ -79,27 +78,39 @@
 
                     <div ng-repeat="aCat in allSelectedCategories">
 
-                            <div class="row">
-                                <div class="col-sm-12 col-xs-12 cdlCategoryHeader">Category: {{aCat}}</div>
+                        <div class="row">
+                            <div class="col-sm-12 col-xs-12 cdlCategoryHeader">Category: {{aCat.catName}} // {{aCat.catCount}}</div>
+                            <!-- Show this message when there are no actual documents in this category -->
+                            <div class="col-sm-12 col-xs-12" ng-show="aCat.catCount === 0">
+                                <p>
+                                    Oops!  Your system administrators defined this cateogry but there
+                                    aren't any documents tagged with it.  Don't despair!  They will
+                                    upload something here soon.
+                                </p>
                             </div>
-                            <div class="row cdlHoverCat" ng-class="{cdlEvenRow: $even}" ng-repeat="aDocument in allSelectedDocuments | filter:{docCategory:aCat} ">
-                                <div class="col-sm-3 col-xs-3" >
-                                    [icon] {{aDocument.docName}}
-                                    <span class="glyphicon glyphicon-download"></span>
-                                 </div>
-                                <div class="col-sm-8 col-xs-8">Title goes here.</div>
-                                <div class="col-sm-1 col-xs-1">{{aDocument.docModifiedDate | date}}</div>
-                                <div class="col-sm-3 col-xs-3"></div>
-                                <div class="col-sm-8 col-xs-8">
-                                    {{aDocument.docSummary}}
-                                </div>
-                                <div class="col-sm-1 col-xs-1"></div>
+                        </div>
+
+
+                        <div class="row cdlHoverCat" ng-class="{cdlEvenRow: $even}"
+                             ng-repeat="aDocument in allSelectedDocuments | filter:{docCategory:aCat.catName} ">
+                            <div class="col-sm-3 col-xs-3">
+                                [icon] {{aDocument.docName}}
+                                <span class="glyphicon glyphicon-download"></span>
                             </div>
+                            <div class="col-sm-8 col-xs-8">{{aDocument.docTitle}}</div>
+                            <div class="col-sm-1 col-xs-1">{{aDocument.docModifiedDate | date}}</div>
+                            <div class="col-sm-3 col-xs-3"></div>
+                            <div class="col-sm-8 col-xs-8"
+                                 ng-bind-html="aDocument.docSummary | highlight:searchText">
+                            </div>
+                            <div class="col-sm-1 col-xs-1"></div>
+                        </div>
                     </div>
                 </fieldset>
             </div>
 
         </div>
+
 
     </div>
 
