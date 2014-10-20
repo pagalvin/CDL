@@ -14,5 +14,6 @@ Why not use standard SharePoint you ask?  You may well want to do that, but this
 Brief History:
 ==============
 10/15/2014: Initial repo created in github with MIT license
+
 10/19/2014: First steps toward search.  Added category counts and a bit of a message indicating when a category has no actual documents associated with it.  Changed the "selected categories" from a simple array to an array of objects (cat name and cat count).
 
