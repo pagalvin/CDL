@@ -1,7 +1,7 @@
 CDL
 ===
 
-Categorized Document Library Listing
+Categorized Document Library Listing (last updated 10/19/14)
 
 This solution aims to support a resource library that an IT department or HR department might provide to their community.  For example, IT creates a few dozen guides and other types of help in PDF, DOC, etc. format.  These cover topics like "how to use the phone", "OMG, I forgot my password" and stuff like that.  
 
@@ -11,6 +11,15 @@ Why not use standard SharePoint you ask?  You may well want to do that, but this
 
 
 ![As of 10/19/2014](http://goo.gl/SH3tt8)
+
+Installation:
+=============
+This early version (as of 10/15) doesn't include any real installation process.  Follow these two steps to install it now:
+1. Copy the github package into a document library in your SP site.
+2. Create a web part page in a "pages" folder, slap on a CEWP and link it to ../html/CDLIndex.html
+
+It will look somethng like this:
+![Library structure](http://goo.gl/2zNLML)
 
 Brief History:
 ==============
