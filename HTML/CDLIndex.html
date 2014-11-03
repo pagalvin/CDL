@@ -14,7 +14,7 @@
 
         <!-- Page/body label -->
         <div class="row">
-            <div class="col-xs-12 col-sm-12 dclCenteredText"><h2>Categorized Document Library Listing</h2></div>
+            <div class="col-xs-12 col-sm-12 dclCenteredText"><h2>{{CDLSettings.generalProperties.appDisplayLabel}}</h2></div>
         </div>
 
         <!-- Category display and search control area -->
@@ -23,9 +23,20 @@
                 <fieldset class="scheduler-border">
                     <legend class="scheduler-border" id="dclCategoriesSection">
                         Categories
-                        (<a href="" ng-click="selectAllCategories()">Select All</a>)
-                        (<a href="" ng-click="deselectAllCategories()">Deselect All</a>)
+                        (<a href="#" ng-click="selectAllCategories()">Select All</a>)
+                        (<a href="#" ng-click="deselectAllCategories()">Deselect All</a>)
+                        (<a href="#" ng-click="doShowCategoryHelp = !doShowCategoryHelp;" ng-switch="doShowCategoryHelp"><span ng-switch-when="true">Hide Help</span><span ng-switch-default>What's This?</span></a>)
                     </legend>
+
+                    <div class="row" ng-show="doShowCategoryHelp">
+                        <div class="col-sm-12 col-xs-12">
+                            <p>
+                            <h4>Category Help</h4>
+                            {{CDLSettings.generalProperties.appHelp.categoriesHelp}}
+                            </p>
+                        </div>
+                    </div>
+
 
                     <div class="row">
                         <div class="col-xs-3 col-sm-3 cdlHoverCat"
@@ -36,13 +47,27 @@
 
                     </div>
                 </fieldset>
+
+
             </div>
 
             <div class="col-xs-4 col-sm-4">
                 <fieldset class="scheduler-border">
                     <legend class="scheduler-border" id="dclSearchSection">
-                        Quick Search (<a href="#">What's this?</a>)
+                        Quick Search
+                        <!-- big long line required to avoid spaces after and before the opening/closing parens -->
+                        (<a href="#" ng-click="doShowSearchText = !doShowSearchText;" ng-switch="doShowSearchText"><span ng-switch-when="true">Hide Help</span><span ng-switch-default>What's This?</span></a>)
                     </legend>
+
+                    <div class="row" ng-show="doShowSearchText">
+                        <div class="col-sm-12 col-xs-12">
+                            <p>
+                                <h4>Search Help</h4>
+                                {{CDLSettings.generalProperties.appHelp.quickSearchHelp}}
+
+                            </p>
+                        </div>
+                    </div>
 
                     <div class="row">
                         <div class="col-sm-4 col-xs-4">
@@ -68,7 +93,21 @@
                 <fieldset class="scheduler-border">
                     <legend class="scheduler-border" id="dclSearchResultsBody">
                         Search Results
+                        (<a href="#" ng-click="doShowSearchResultsHelp = !doShowSearchResultsHelp;" ng-switch="doShowSearchResultsHelp"><span ng-switch-when="true">Hide Help</span><span ng-switch-default>What's This?</span></a>)
                     </legend>
+
+                    <div class="row" ng-show="doShowSearchResultsHelp">
+                        <div class="col-sm-12 col-xs-12">
+                            <p>
+                            <h4>Search Results Help</h4>
+                            {{CDLSettings.generalProperties.appHelp.searchResultsHelp}}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div ng-show="allSelectedCategories.length < 1">
+                        Select one or more categories to see search results.
+                    </div>
 
                     <div class="row cdlTableHeader" ng-show="allSelectedCategories.length > 0;">
                         <div class="col-xs-3 col-sm-3">Document</div>
@@ -83,13 +122,12 @@
                             <!-- Show this message when there are no actual documents in this category -->
                             <div class="col-sm-12 col-xs-12" ng-show="aCat.catCount === 0">
                                 <p>
-                                    Oops!  Your system administrators defined this cateogry but there
+                                    Oops!  Your system administrators defined this category but there
                                     aren't any documents tagged with it.  Don't despair!  They will
                                     upload something here soon.
                                 </p>
                             </div>
                         </div>
-
 
                         <div class="row cdlHoverCat" ng-class="{cdlEvenRow: $even}"
                              ng-repeat="aDocument in allSelectedDocuments | filter:{docCategory:aCat.catName} ">
@@ -116,7 +154,7 @@
 
 </xform>
 
-
+    <script type="text/javascript" src="../JS/CDLUtil.js"></script>
     <script type="text/javascript" src="../Libraries/Angular/angular.js"></script>
     <script type="text/javascript" src="../Libraries/Angular/angular-route.js"></script>
     <script type="text/javascript" src="../Libraries/Lodash/lodash.js"></script>
