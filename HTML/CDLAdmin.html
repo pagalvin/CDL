@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html ng-app="CDLApp">
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title></title>
+        <link rel="stylesheet" href="../Libraries/Bootstrap/bootstrap.min.css">
+        <link rel="stylesheet" href="../CSS/CDL.css">
+    </head>
+
+    <body ng-init="currentMenuOption='cdlGeneralSettings';" ng-controller="CDLController">
+
+        <h1 class="dclCenteredText">CDL Administration</h1>
+        <div class="form-group required container">
+
+            <div class="row">
+
+                <!-- Menu options -->
+                <div class="col-xs-3 col-lg-3 col-sm-3">
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">Admin Menu</legend>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-lg-12 cdlMenuItem"
+                                 ng-class="{cdlActiveAdminMenuOption: currentMenuOption==='cdlGeneralSettings'}"
+                                 ng-click="currentMenuOption = 'cdlGeneralSettings';">
+                                General Settings
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-lg-12 cdlMenuItem"
+                                 ng-class="{cdlActiveAdminMenuOption: currentMenuOption==='cdlListsAndLibraries'}"
+                                 ng-click="currentMenuOption = 'cdlListsAndLibraries';">
+                                Library Settings
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-lg-12 cdlMenuItem"
+                                ng-class="{cdlActiveAdminMenuOption: currentMenuOption==='cdlSearchSettings'}"
+                                ng-click="currentMenuOption = 'cdlSearchSettings';">
+                            Search Settings
+                            </div>
+                        </div>
+                        <div class="row">
+                            <a href="CatDocLibIndex.aspx" target="_blank" title="This will open a new tab or window to CatDocLibIndex.aspx which is the end user landing page.">
+                                <div class="col-xs-12 col-sm-12 col-lg-12 cdlMenuItem"
+                                     ng-class="{cdlActiveAdminMenuOption: currentMenuOption==='cdlLookAndFeelSettings'}">
+                                    <span class="cdlMenuAnchorTag">View as an End User&nbsp;</span>
+                                    <span class="glyphicon glyphicon-new-window"/>
+                               </div>
+                            </a>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-lg-12 cdlMenuItem"
+                                 ng-class="{cdlActiveAdminMenuOption: currentMenuOption==='cdlAdvancedSettings'}"
+                                 ng-click="currentMenuOption = 'cdlAdvancedSettings';">
+                                Advanced Setup
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-lg-12">
+                                <hr/>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-12 col-lg-12 cdlMenuItem" data-toggle="modal" data-target="#cdlPleaseConfirmSave">
+                                Save Configuration Changes
+                            </div>
+                        </div>
+
+
+                    </fieldset>
+                </div>
+
+                <!-- All of the specific menu tabs are here -->
+                <div class="col-xs-9 col-sm-9 col-lg-9 ">
+
+                <!-- General settings tab content -->
+                <div id="cdlGeneralSettings" ng-show="currentMenuOption==='cdlGeneralSettings'">
+                    <fieldset class="scheduler-border">
+                       <legend class="scheduler-border">
+                           <!--
+                               This has to be munged on one big line otherwise a space is inserted between
+                               the opening and closing parethesis.
+                           -->
+                           General Settings (<a href="#" ng-click="doShowGeneralHelp=!doShowGeneralHelp;" ng-switch="doShowGeneralHelp"><span ng-switch-when="true">Hide Help</span><span ng-switch-default>General Settings Help</span></a>)
+                       </legend>
+
+                       <!-- General settings help -->
+                       <div ng-show="doShowGeneralHelp" class="row">
+                           <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+
+                               <h4>General Help</h4>
+                               <p>
+                                   Last updated: 11/2/2014.
+                               </p>
+                               <p>
+                                   Use General settings to specify general-purpose settings for CDL.  Enter data as
+                                   follows:
+                                   <ul>
+                                        <li>
+                                            <b>App  Name / Label</b>: This is the title of the CDL app from an end user
+                                            point of view.</li>
+                                        <li>
+                                            <b>Show categories with no data</b>: Not used at this time.
+                                        </li>
+                                        <li>
+                                            <b>Use test data instead of your library</b>: If you answer 'yes' then the system
+                                            will not access a SharePoint library but instead show content from your
+                                            own "test database".  Configure the test database via Advanced Settings.
+                                        </li>
+                                        <li>
+                                            <b>App Owner Name</b>: Not used at this time.  Intended to provide a
+                                            point of contact for end users that wish to suggest new content for this
+                                            library.
+                                        </li>
+                                        <li>
+                                            <b>App Owner Email Address</b>:  Not used at this time but will support
+                                            "suggestions" in a future version.
+                                        </li>
+                                        <li>
+                                            <b>Categories Help Text</b>: This help is displayed when the user clicks
+                                            the 'What's This' link in the categories section.
+                                        </li>
+                                        <li>
+                                            <b>Quick Search Help Text</b>: This help is displayed when the user clicks
+                                            the 'What's This' link in the search section.
+                                        </li>
+                                        <li>
+                                            <b>Search Results Help</b>: This help is displayed when the user clicks
+                                            the 'What's This' link in the search  results section.
+                                        </li>
+                                   </ul>
+                               </p>
+                               <p>3rd line of text
+                               </p>
+                           </div>
+
+                       </div>
+
+                           <!-- App name -->
+                           <div class="row">
+                               <div class="col-sm-2 col-xs-2 col-lg-2 col-md-2 cdlLabel">
+                                   <label for="CDLAppNameLabel">App Name / Label:</label>
+                               </div>
+                               <div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+                                   <input id="CDLAppNameLabel" class="form-control" type="text" ng-model="CDLSettings.generalProperties.appDisplayLabel">
+                               </div>
+                           </div>
+
+                           <!-- Show zero item categories and use test data or not.  -->
+                           <div class="row">
+                               <div class="col-sm-6 col-xs-6 col-md-6 col-lg-6">
+                                   <label class="label-control">Show categories with no data?:</label>
+                                   <label class="cdlRadioInput radio-inline" for="doShowCategoriesNoDataFALSE">
+                                       <input type="radio" id="doShowCategoriesNoDataFALSE" class="cdl-radio-inline radio-inline" name="doShowCategoriesNoData" ng-model="CDLSettings.generalProperties.doShowCategoriesNoDataText" value="Yes">Yes
+                                   </label>
+                                   <label class="cdlRadioInput radio-inline">
+                                       <input type="radio"  class="cdl-radio-inline radio-inline" name="doShowCategoriesNoData" ng-model="CDLSettings.generalProperties.doShowCategoriesNoDataText" value="No">No
+                                   </label>
+                               </div>
+
+                               <div class="col-sm-6 col-md-6 col-lg-6 col-xs-6">
+                                    <label class="label-control">Use test data instead of your library?:</label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="useTestData" class="cdl-radio-inline radio-inline" value="Yes" ng-model="CDLSettings.generalProperties.doUseTestDataText">Yes
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="useTestData" class="cdl-radio-inline radio-inline" value="No" ng-model="CDLSettings.generalProperties.doUseTestDataText">No
+                                    </label>
+                               </div>
+                            </div>
+
+                           <!-- App owner name/email -->
+                           <div class="row">
+                               <div class="col-sm-2 col-md-2 col-lg-2 col-xs-2 cdlLabel">
+                                   <label for="CDLAppOwnerName">App Owner Name:</label>
+                               </div>
+                               <div class="col-sm-4 col-md-4 col-lg-4 col-xs-4">
+                                   <input class="form-control" type="text" ng-model="CDLSettings.generalProperties.appOwnerName" id="CDLAppOwnerName">
+                               </div>
+                               <div class="col-sm-3 col-md-3 col-lg-3 col-xs-3 cdlLabel">
+                                   <label for="CDLAppOwnerEmailAddress">App Owner Email Address:</label>
+                               </div>
+                               <div class="col-sm-3 col-md-3 col-lg-3 col-xs-3 ">
+                                   <input class="form-control" type="text" ng-model="CDLSettings.generalProperties.appOwnerEmailAddress" id="CDLAppOwnerEmailAddress">
+                               </div>
+                           </div>
+
+                           <!-- Categories Help -->
+                           <div class="row">
+                               <div class="col-sm-2 col-xs-2 cdlLabel">
+                                   <label for="CDLCategoriesHelpText">Categories Help Text:</label>
+                               </div>
+                               <div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+                                   <textarea class="form-control" rows="6" cols="104" ng-model="CDLSettings.generalProperties.appHelp.categoriesHelp" id="CDLCategoriesHelpText"></textarea>
+                               </div>
+                           </div>
+
+                           <!-- Search Help -->
+                           <div class="row">
+                               <div class="col-sm-2 col-xs-2 cdlLabel">
+                                   <label for="CDLQuickSearchHelpText">Quick Search Help Text:</label>
+                               </div>
+                               <div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+                                   <textarea class="form-control" rows="6" ng-model="CDLSettings.generalProperties.appHelp.quickSearchHelp" id="CDLQuickSearchHelpText"></textarea>
+                               </div>
+                           </div>
+
+                           <!-- Search Help -->
+                           <div class="row">
+                               <div class="col-sm-2 col-xs-2 cdlLabel">
+                                   <label for="CDLSearchResultsHelpText">Search Results Help:</label>
+                               </div>
+                               <div class="col-sm-10 col-lg-10 col-md-10 col-xs-10">
+                                   <textarea class="form-control" rows="6" xcols="104" ng-model="CDLSettings.generalProperties.appHelp.searchResultsHelp" id="CDLSearchResultsHelpText"></textarea>
+                               </div>
+                           </div>
+
+                    </fieldset>
+                </div>
+
+                <div id="cdlListsAndLibraries"  ng-show="currentMenuOption==='cdlListsAndLibraries'">
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">
+                            Library Settings (<a href="#" ng-click="doShowListsAndLibrariesHelp=!doShowListsAndLibrariesHelp;" ng-switch="doShowListsAndLibrariesHelp"><span ng-switch-when="true">Hide Help</span><span ng-switch-default>Library Settings Help</span></a>)
+                        </legend>
+
+                        <!-- General settings help -->
+                        <div ng-show="doShowListsAndLibrariesHelp" class="row">
+                            <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+
+                                <h4>Library Help</h4>
+                                <p>
+                                    Last updated: 11/2/2014.
+                                </p>
+                                <p>
+                                    <b>Overview</b>: As of 11/2/2014, CDL assumes the following:
+                                    <ol>
+                                        <li>You have one document library.</li>
+                                        <li>It has site and/or list column to specify a category.</li>
+                                        <li>The category field is of type "lookup."</li>
+                                    </ol>
+                                    These assumptions will change in future releases.
+                                </p>
+                                <p>
+                                    Enter data as shown:
+                                    <ul>
+                                        <li>
+                                            <b>Document Library Site Url</b>: The full URL to the SharePoint site that
+                                            contains your document library.  This would be the "home" page of your site
+                                            (without any .aspx extension).
+                                        </li>
+                                        <li>
+                                            <b>Document Library Name</b>: The name of the library itself.  It may
+                                            contain spaces.  This is the name of the library as shown in the library
+                                            settings (at the top of the settings page where it also shows the Web
+                                            Address and Description.
+                                        </li>
+                                        <li>
+                                            <b>Category Column Name</b>: The name of the column in document library
+                                            that contains the category.  As noted above, this must be a a lookup
+                                            column.  If the the category column name contains spaces, replace them with
+                                            "_x0020_".  For instance, if your column's name is "Helpdesk Category" you
+                                            would enter "Helpdesk_x0020_Category".
+                                        </li>
+                                    </ul>
+                                </p>
+                            </div>
+
+                        </div>
+                        <!-- Doc lib web url -->
+                        <div class="row">
+                            <div class="col-sm-4 col-xs-4 cdlLabel">
+                                <label for="CDLDocLibWebUrl">Document Library Site Url:</label>
+                            </div>
+                            <div class="col-sm-8 col-lg-8 col-md-8 col-xs-8">
+                                <input type="text" class="form-control" ng-model="CDLSettings.dataSources[0].docLibWebUrl" id="CDLDocLibWebUrl">
+                            </div>
+                        </div>
+
+                        <!-- Doc lib name -->
+                        <div class="row">
+                            <div class="col-sm-4 col-xs-4 cdlLabel">
+                                <label for="CDLDocLibName">Document Library Name:</label>
+                            </div>
+                            <div class="col-sm-8 col-lg-8 col-md-8 col-xs-8">
+                                <input type="text" class="form-control" ng-model="CDLSettings.dataSources[0].docLibName" id="CDLDocLibName">
+                            </div>
+                        </div>
+
+                        <!-- Category column name-->
+                        <div class="row">
+                            <div class="col-sm-4 col-xs-4 cdlLabel">
+                                <label for="CDLCategoryColumnName">Category Column Name:</label>
+                            </div>
+                            <div class="col-sm-8 col-lg-8 col-md-8 col-xs-8">
+                                <input type="text" class="form-control" ng-model="CDLSettings.dataSources[0].docLibCategoryColumnName" id="CDLCategoryColumnName">
+                            </div>
+                        </div>
+
+
+
+
+                    </fieldset>
+                </div>
+
+                <div id="cdlSearchSettings"  ng-show="currentMenuOption==='cdlSearchSettings'">
+                    Search Settings go here.  Functionality to be determined.
+                </div>
+
+                <div id="cdlLookAndFeelSettings"  ng-show="currentMenuOption==='cdlLookAndFeelSettings'">
+                    Look and feel settings go here.  Functionality to be determined.
+                </div>
+
+                <div id="cdlAdvancedSettings" ng-show="currentMenuOption==='cdlAdvancedSettings'">
+                    <fieldset class="scheduler-border">
+                        <legend class="scheduler-border">
+                            <!--
+                                This has to be munged on one big line otherwise a space is inserted between
+                                the opening and closing parethesis.
+                            -->
+                            Advanced Settings (<a href="#" ng-click="doShowAdvancedSettingsHelp=!doShowAdvancedSettingsHelp;" ng-switch="doShowAdvancedSettingsHelp"><span ng-switch-when="true">Hide Help</span><span ng-switch-default>Advanced Settings Help</span></a>)
+                        </legend>
+
+                        <!-- Advanced Settings help -->
+                        <div ng-show="doShowAdvancedSettingsHelp" class="row">
+                            <div class="col-xs-12 col-sm-12 col-lg-12 col-md-12">
+
+                                <h4>Advanced Settings Help</h4>
+                                <p>Last updated: 11/2/2014.</p>
+                                <p>
+                                    Use this section to define test data.  Note that test data is used when you have
+                                    answered "yes" to the relevant question in General Settings.
+                                </p>
+                                <p>
+                                    Add a new item item by entering its Title, Document Name, Category and Last Modified Date.
+                                    Soon - you'll also be able to add the description.
+                                    <br/>
+                                    NOTE: Last Modified Date must be entered in YYYY-MM-DD format (this will be made
+                                    easier in the next release).
+                                </p>
+                                <p>
+                                    Click the "X" icon next to the line(s) you wish to remove.  You'll be able to
+                                    un-delete this test item if you change your mind, provided you don't click
+                                    'Save Configuration Changes' - at this point your changes are permanent (although
+                                    you can always add it back).
+                                </p>
+                                <p>
+                                    Neither new items nor deleted items are stored in the database until you click 'Save Configuration Changes' on the left.
+                                </p>
+                                <p>
+                                    NOTE: Category is not provided as a drop-down here - this is mean to give you a
+                                    quick and easy to way to add some data without going to the hassle of creating
+                                    and/or retrofitting an existing SharePoint list to conform with CDL's current
+                                    structural requirements.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="row"><div class="col-xs-12"><h4>Test Data</h4></div></div>
+
+                        <div class="row"><div class="col-xs-12"><h5>Add a New Test Item (all fields required):</h5></div></div>
+                        <div class="row">
+                            <div class="col-xs-4"><label for="newTestItemTitle">Title:</label></div>
+                            <div class="col-xs-3"><label for="newTestItemDocName">Document Name:</label></div>
+                            <div class="col-xs-2"><label for="newTestItemDocCategory">Category:</label></div>
+                            <div class="col-xs-2"><label for="newTestItemDocModifiedDate">Last Mod Date:</label></div>
+                            <div class="col-xs-1"></div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-xs-4"><input id="newTestItemTitle" class="cdlHasHeaderLabel form-control" type="text" ng-model="newTestItemTitle"></div>
+                            <div class="col-xs-3"><input id="newTestItemDocName" class="cdlHasHeaderLabel form-control" type="text" ng-model="newTestItemDocName"></div>
+                            <div class="col-xs-2"><input id="newTestItemDocCategory" class="cdlHasHeaderLabel form-control" type="text" ng-model="newTestItemDocCategory"></div>
+                            <div class="col-xs-2"><input id="newTestItemDocModifiedDate" class="cdlHasHeaderLabel form-control" type="text" ng-model="newTestItemDocModifiedDate"></div>
+                            <div class="col-xs-1">
+                                <span ng-show="newTestItemIsValid()">
+                                    <a href="#" class="btn btn-sm" ng-click="addNewTestRow()" title="Add this new test item to the list."><span class="glyphicon glyphicon-plus"></span></a>
+                                </span>
+                            </div>
+
+                        </div>
+
+                        <div class="row"><div class="col-xs-12"><hr/><h5>Modify or Remove Existing Items:</h5></div></div>
+                        <div class="row">
+                            <div class="col-xs-4">Title</div>
+                            <div class="col-xs-2">Name</div>
+                            <div class="col-xs-2">Category</div>
+                            <div class="col-xs-3">Date</div>
+                            <div class="col-xs-1">Actions</div>
+                        </div>
+
+                        <div class="row cdlHoverRow" ng-repeat="aTestItem in CDLSettings.testData" ng-class="{cdlEvenRow: $even}">
+
+                            <!-- doc title -->
+                            <div class="col-xs-4">
+                                <input ng-show="!aTestItem.isMarkedForDeletion" class="cdlTabularInputField form-control" type="text" ng-disabled="aTestItem.isMarkedForDeletion" ng-model="aTestItem.docTitle" >
+                                <span ng-show="aTestItem.isMarkedForDeletion" class="cdlIsDisabledData" >{{aTestItem.docTitle}}</span>
+                            </div>
+                            <!-- doc name -->
+                            <div class="col-xs-2" ng-show="!aTestItem.isMarkedForDeletion"><input class="cdlTabularInputField form-control" type="text" ng-disabled="aTestItem.isMarkedForDeletion" ng-model="aTestItem.docName"></div>
+                            <div class="col-xs-2 cdlIsDisabledData" ng-show="aTestItem.isMarkedForDeletion">{{aTestItem.docName}}</div>
+
+                            <!-- doc category -->
+                            <div class="col-xs-2" ng-show="!aTestItem.isMarkedForDeletion"><input class="cdlTabularInputField form-control" type="text" ng-disabled="aTestItem.isMarkedForDeletion" ng-model="aTestItem.docCategory"></div>
+                            <div class="col-xs-2 cdlIsDisabledData" ng-show="aTestItem.isMarkedForDeletion">{{aTestItem.docCategory}}</div>
+
+                            <!-- last modified date -->
+                            <div class="col-xs-3">
+                                <input ng-show="!aTestItem.isMarkedForDeletion" class="cdlTabularInputField form-control" name="docModifiedDate" type="date" ng-disabled="aTestItem.isMarkedForDeletion" ng-model="aTestItem.docModifiedDate" placeholder="yyyy-MM-dd"/>
+                                <span class="cdlIsDisabledData" ng-show="aTestItem.isMarkedForDeletion">{{aTestItem.docModifiedDate | date:'shortDate'}}</span>
+                            </div>
+
+                            <div class="col-xs-1">
+                                <!-- Conditionally display the delete item icon -->
+                                    <span ng-show="!aTestItem.isMarkedForDeletion">
+                                        <a href="#" ng-click="markTestDataRowForDeletion($index)"
+                                           title="Click here to mark this item for deletion.  It will be removed from the test data set when you click 'Save Configuration Changes.'">
+                                            <span class="glyphicon glyphicon-remove"></span>
+                                        </a>
+                                    </span>
+
+                                <!-- Conditionally display the New icon -->
+                                    <span ng-show="aTestItem.isNewTestItem === true"
+                                          class="glyphicon glyphicon-asterisk"
+                                          title="You just added this item.  Click 'Save Configuration Changes' to save it permanently.">
+                                    </span>
+
+                                <!-- Conditionally display the 'undelete' icon -->
+                                    <span ng-show="aTestItem.isMarkedForDeletion">
+                                        <a href="#" ng-click="unmarkTestDataRowForDeletion($index)"
+                                           title="You marked this item for deletion.  Click here to unmark it.">
+                                            <span class="glyphicon glyphicon-remove-sign"></span></a>
+                                    </span>
+
+
+                            </div>
+                         </div>
+
+                    </fieldset>
+                </div>
+
+            </div>
+        </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="cdlPleaseConfirmSave" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Please confirm...</h4>
+                        </div>
+                        <div class="modal-body">
+                            Please confirm that you wish to save your changes.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" ng-click="saveConfigurationSettings()">Save changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        <script type="text/javascript" src="../JS/CDLUtil.js"></script>
+        <script type="text/javascript" src="../Libraries/Angular/angular.js"></script>
+        <script type="text/javascript" src="../Libraries/Angular/angular-route.js"></script>
+        <script type="text/javascript" src="../Libraries/Lodash/lodash.js"></script>
+        <script type="text/javascript" src="../JS/CatDocLibController.js"></script>
+        <script type="text/javascript" src="../Libraries/jQuery/jquery.min.js"></script>
+        <script type="text/javascript" src="../Libraries/Bootstrap/bootstrap.min.js"></script>
+
+    </body>
+</html>
