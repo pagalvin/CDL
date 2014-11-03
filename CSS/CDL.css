@@ -1,3 +1,22 @@
+.cdlRadioInput {
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+
+/* Overrides a few bits on the standard bootstrap radio-inline */
+.cdl-radio-inline {
+    margin-top: 3px !important;
+    margin-left: -16px !important;
+}
+
+.cdlMenuAnchorTag {
+    color: rgb(51,51,51);
+    font-size: 12px;
+    height: 20px;
+    font-family: "Helvetica Neue" ,Helvetica,Arial,sans-serif;
+    line-height: 20px;
+}
+
 .cdlSearchlHighlight {
     background-color: yellow;
 }
@@ -6,14 +25,25 @@
     text-align: center;
 }
 
-.cdlHoverCat:hover {
+.cdlHoverCat:hover, .cdlMenuItem:hover {
     background-color: #d5fdff;
     cursor: pointer;
 }
 
-.cdlSelectedCategory
+.cdlTabularInputField {
+    margin-top: 2px !important;
+    margin-bottom: 2px !important;
+}
+
+.cdlHoverRow:hover {
+    background-color: #d5fdff;
+    font-weight: bold;
+}
+
+.cdlSelectedCategory, .cdlActiveAdminMenuOption, .cdlActiveAdminMenuOption:hover
 {
     background-color: #6ce6ff;
+    font-weight: bold;
 }
 
 .pleasingOutline {
@@ -21,13 +51,29 @@
     box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444;
 }
 
+.legendHref {
+    font-size: 21px !important;
+}
+
+.cdlMenuItemSelected {
+    font-weight: bold;
+}
+
+.cdlIsDisabledData {
+    text-decoration: line-through;
+}
+
+.cdlHasHeaderLabel {
+    margin-top: 0px !important;
+    padding-top: 0px !important;
+}
 
 body {
     color: #333;
     font-size: 12px;
     line-height: 20px;
 }
-.dclLabel {
+.cdlLabel {
     padding-top: 8px;
     text-align: right;
     padding-right: 0px !important;
@@ -87,6 +133,7 @@ fieldset.scheduler-border {
     padding-left: 20px;
 }
 
+
 .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1,
 .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2,
 .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3,
@@ -99,6 +146,6 @@ fieldset.scheduler-border {
 .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10,
 .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11,
 .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
-    padding-left: 1px;
-    padding-right: 1px;
+    padding-left: 3px;
+    padding-right: 3px;
 }
